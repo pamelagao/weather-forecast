@@ -1,0 +1,24 @@
+form {
+  width: 100vw;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: antiquewhite;
+}
+input {
+  width: 500px;
+  padding: 10px;
+  border: none;
+  font-size: 1.3rem;
+}
+button {
+  font-size: 1.3rem;
+  padding: 10px;
+  margin-left: 20px;
+  background: none;
+  border: 1px solid;
+}
+.weather-container .weather {
+  margin: 20px;
+}
