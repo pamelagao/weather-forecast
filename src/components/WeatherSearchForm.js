@@ -1,6 +1,7 @@
 import React from 'react'
 import WeatherForecast from './WeatherForecast'
-import '../assets/style.css'
+import Form, { SearchField } from './styles/Form'
+import Button from './styles/Button'
 
 export default class WeatherSearchForm extends React.Component {
 
@@ -25,16 +26,17 @@ export default class WeatherSearchForm extends React.Component {
     return (
       <div>
         {/* search bar */}
-        <form onSubmit={this.handleSubmitCity}>
-          <input 
+        <Form onSubmit={this.handleSubmitCity}>
+          <SearchField 
             type="text"
             name="city"
             placeholder="search by the name of the city"
             value={this.state.city}
             onChange={this.handleCityChange}
           />
-          <button onClick={this.handleSubmitCity}>search</button>
-        </form>
+          <Button onClick={this.handleSubmitCity}>search</Button>
+        </Form>
+        
         {/* display weather api */}
         {
           this.state.searchForecast ? 

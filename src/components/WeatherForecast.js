@@ -1,5 +1,7 @@
 import React from 'react'
 import Axios from 'axios'
+import '../assets/css/weather-icons.min.css'
+import ListItemWrapper, { WeatherIcon } from './styles/ListItemWrapper'
 require('dotenv').config()
 
 export default class WeatherForecast extends React.Component {
@@ -35,7 +37,6 @@ export default class WeatherForecast extends React.Component {
   }
   
   render() {
-    console.log(this.state.weather)
     if (this.state.isLoading) {
       return <div>loading ...</div>
     }
@@ -43,7 +44,7 @@ export default class WeatherForecast extends React.Component {
       <div className="weather-container">
         {
           this.state.weather.map(data => (
-            <div key={data.dt} className="weather">
+            <ListItemWrapper key={data.dt} space="20px">
               {/* weekday */}
               <div>
                 {
@@ -51,13 +52,22 @@ export default class WeatherForecast extends React.Component {
                 }
               </div>
               <div>Date: {data.dt_txt}</div>
+
               {/* weather icon */}
-              <div>{data.weather[0].description}</div>
-              <div>icon: {data.weather[0].icon}</div>
+              <div>
+              {
+                (data.weather[0].main === 'Clouds') ? (
+                  <WeatherIcon className="wi wi-cloudy"></WeatherIcon>
+                ) : (
+                  <WeatherIcon className={'wi wi-' + data.weather[0].main.toLowerCase()}></WeatherIcon>
+                )
+              }
+              </div>
+              <div>{data.weather[0].main}</div>
 
               {/* temperature degree */}
               <div>Temperature: {Math.round(data.main.temp)} &#8451;</div>
-            </div>
+            </ListItemWrapper>
           ))
         }
       </div>
